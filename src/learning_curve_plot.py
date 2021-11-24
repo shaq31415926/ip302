@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import learning_curve, cross_val_score
 
+
 def learning_curve_plot(model, X_train, y_train):
     """Plots learning curves for model validation
     
