@@ -9,7 +9,6 @@ def feature_importance_plot(model, X_train, n):
     @param X_train dataframe - the training dataset
     @param n int - the number of features we are interested in plotting
     
-    
     @return a plot with the Top n features
     """
     

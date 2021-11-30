@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import learning_curve, cross_val_score
 
 
-def learning_curve_plot(model, X_train, y_train):
+def learning_curve_plot(model, X_train, y_train, scoring):
     """Plots learning curves for model validation
     
     @param models - list of models we are interested in evaluating
@@ -21,7 +21,7 @@ def learning_curve_plot(model, X_train, y_train):
         # Number of folds in cross-validation
         cv = 5,
         # Evaluation metric
-        scoring = 'accuracy',
+        scoring = scoring,
         # Use all computer cores
         n_jobs = -1,
         shuffle = True,
