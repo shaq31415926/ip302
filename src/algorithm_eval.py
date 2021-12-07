@@ -1,9 +1,11 @@
-from sklearn.model_selection import StratifiedKFold, cross_val_score
 import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.metrics import r2_score, explained_variance_score, mean_absolute_error, mean_squared_error
 
 
-def algorithm_eval(models, X_train, y_train):
-    """Compares a selection of algorithms, evaluates each of them and summarizes the results
+def algorithm_eval_classification(models, X_train, y_train):
+    """Compares a selection of classification algorithms, evaluates each of them and summarizes the results
     
     @param models - list of models we are interested in evaluating
     @param X_train - the training features
@@ -67,3 +69,31 @@ def algorithm_eval(models, X_train, y_train):
     plt.show()
 
     return scoring_results
+
+
+def algorithm_eval_regression(models, X_train, y_train, X_test, y_test):
+    """This is work in progress, but very simply for a list of models gives some eval metrics"""
+    
+    scoring_df = []
+    
+    for name, model in models:
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+
+        # the evaluation metrics for the model
+        r2 = r2_score(y_test, y_pred)
+        explained_var = explained_variance_score(y_test, y_pred)
+        mae = mean_absolute_error(y_test, y_pred)
+        mse = mean_squared_error(y_test, y_pred)
+
+        scoring_dict = {'Model Name': name,
+                          'R2': round(r2, 4), 
+                          'Explained Variance': round(explained_var, 4), 
+                          'Mean Absolute Error': round(mae, 4), 
+                          'Mean Squared Error': round(mse, 4), 
+
+          }
+
+        scoring_df.append(scoring_dict)
+    
+    return pd.DataFrame(scoring_df)

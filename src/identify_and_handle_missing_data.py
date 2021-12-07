@@ -65,5 +65,5 @@ def handle_numerical_missing_data(df, fill_na_value):
     
     for n in numerical_cols:
                                                    
-        print("replacing missing values for", n)
+        print("replacing missing values for:", n)
         df[n].fillna(fill_na_value, inplace=True)
