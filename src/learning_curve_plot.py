@@ -46,7 +46,7 @@ def learning_curve_plot(model, X_train, y_train, scoring):
 
     # Create plot
     plt.title("Learning Curves")
-    plt.xlabel("Training Set Size"), plt.ylabel("Accuracy Score"), plt.legend(loc = "best")
+    plt.xlabel("Training Set Size"), plt.ylabel("Error"), plt.legend(loc = "best")
     plt.tight_layout()
     
 
