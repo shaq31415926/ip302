@@ -55,7 +55,7 @@ def identify_missing_data(df):
     
     missing_value_df.percent_missing = round(missing_value_df.percent_missing*100, 2) # format the percent_missing
     
-    return missing_value_df
+    return missing_value_df[missing_value_df.percent_missing > 0]
 
 
 
