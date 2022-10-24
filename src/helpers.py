@@ -63,6 +63,7 @@ def one_hot(df, categorical_cols):
     """
     @param df pandas DataFrame
     @param cols a list of columns to encode 
+    
     @return a DataFrame with one-hot encoding
     """
     
@@ -72,3 +73,31 @@ def one_hot(df, categorical_cols):
         df.drop(c, axis = 1, inplace = True)
     
     return df
+
+
+
+def identify_and_remove_outliers(df, var):
+    """
+    This function is used to identify outliers in a specific column and remove rows containg those values
+    
+    @param df pandas DataFrame
+    @param var str 
+    
+    
+    @return a DataFrame without outliers
+    """
+    
+    q1 = np.percentile(df[var], 25)
+    q3 = np.percentile(df[var], 75)
+    iqr = q1 - q3
+    
+    ub = q3 + 1.5*iqr
+    lb = q1 - 1.5*iqr
+    
+    print("The lower bound is:", lb)
+    print("The upper bound is:", ub)
+    
+    
+    data_w_out_outliers = df[(df[var] > ub) & (df[var] <lb)]
+    
+    return data_w_out_outliers
