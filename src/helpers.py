@@ -101,3 +101,22 @@ def identify_and_remove_outliers(df, var):
     data_w_out_outliers = df[(df[var] > ub) & (df[var] <lb)]
     
     return data_w_out_outliers
+
+def identify_low_variance_features(df, std_threshold):
+    """
+    This definition can be used to identify features with low varaince
+    
+    @param df pandas DataFrame
+    @param std_threshold int 
+    
+    @return a list of features that have low variance
+    """
+    
+    std_df = pd.DataFrame(df.std()).rename(columns = {0: 'standard_deviation'})
+
+    low_var_features = list(std_df[std_df['standard_deviation'] < std_threshold].index)
+
+    print("number of low variance features:", len(low_var_features))
+    print("low variance features:", low_var_features)
+    
+    return low_var_features
