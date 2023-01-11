@@ -45,6 +45,6 @@ def visualize_clusters(y_kmeans, data_scaled, n_clusters):
 
     cmap = sns.color_palette("Set1", n_colors = n_clusters, desat = .5)
 
-    sns.scatterplot(x = 'pca1', y = 'pca2', hue = 'cluster', data = results, palette = cmap, legend = False)
+    sns.scatterplot(x = 'pca1', y = 'pca2', hue = 'cluster', data = results, palette = cmap, legend = True)
     plt.title('K-means Clustering with 2 dimensions')
     plt.show();
