@@ -90,7 +90,7 @@ def identify_and_remove_outliers(df, var):
     
     q1 = np.percentile(df[var], 25)
     q3 = np.percentile(df[var], 75)
-    iqr = q1 - q3
+    iqr = q3 - q1
     
     ub = q3 + 1.5*iqr
     lb = q1 - 1.5*iqr
@@ -99,7 +99,7 @@ def identify_and_remove_outliers(df, var):
     print("The upper bound is:", ub)
     
     
-    data_w_out_outliers = df[(df[var] > ub) & (df[var] <lb)]
+    data_w_out_outliers = df[(df[var] > ub) | (df[var] <lb)]
     
     return data_w_out_outliers
 
