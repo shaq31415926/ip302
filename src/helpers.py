@@ -55,3 +55,19 @@ def identify_missing_data(df):
     missing_value_df.percent_missing = round(missing_value_df.percent_missing*100, 2) # format the percent_missing
     
     return missing_value_df[missing_value_df.percent_missing > 0]
+
+
+
+def one_hot(df, categorical_cols):
+    """
+    @param df pandas DataFrame
+    @param cols a list of columns to encode 
+    @return a DataFrame with one-hot encoding
+    """
+    
+    for c in categorical_cols:
+        dummies = pd.get_dummies(df[c], prefix=c)
+        df = pd.concat([df, dummies], axis=1)
+        df.drop(c, axis = 1, inplace = True)
+    
+    return df
