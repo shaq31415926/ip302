@@ -2,6 +2,26 @@ import pandas as pd
 import numpy as np
 
 
+def identify_low_variance_features(df, std_threshold):
+    """
+    This definition can be used to identify features with low varaince
+    
+    @param df pandas DataFrame
+    @param std_threshold int 
+    
+    @return a list of features that have low variance
+    """
+    
+    std_df = pd.DataFrame(df.std()).rename(columns = {0: 'standard_deviation'})
+
+    low_var_features = list(std_df[std_df['standard_deviation'] < std_threshold].index)
+
+    print("number of low variance features:", len(low_var_features))
+    print("low variance features:", low_var_features)
+    
+    return low_var_features
+
+
 def identify_highly_correlated_features(df, correlation_threshold):
     """
     This definition can be used to identify highly correlated features
