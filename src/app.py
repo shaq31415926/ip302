@@ -8,6 +8,7 @@ st.title("Will the patient have a heart attack? :heart::broken_heart:")
 # list of emojis can be found here
 # https://raw.githubusercontent.com/MarcSkovMadsen/awesome-streamlit/master/gallery/emojis/emojis.py
 
+
 # Pass in the information we will input about the patient
 # these are the features we trained our model with
 age = st.slider("Input age", 18, 100)
@@ -42,7 +43,6 @@ def prediction():
                'oldpeak',
                'slope']
     X = pd.DataFrame([row], columns=columns)
-    print(X.head())
     X["sex"] = X["sex"].apply(lambda x: 1 if x == "male" else 0)
     X["age"] = pd.to_numeric(X['age'])
     X["cp"] = X["cp"].map({'Typical Angina': 1,'Atypical Angina': 2, 'Non-Anginal Pain': 3,'Asymptomatic': 4})
@@ -56,9 +56,9 @@ def prediction():
     X["oldpeak"] = pd.to_numeric(X['oldpeak'])
     X["slope"] = pd.to_numeric(X['slope'])
     
-    print(X)
     prediction = model.predict(X)[0]
     
+    # if the patient is predicted as having a heart attack send a comforting message
     if prediction == 1:
         st.error("I am sorry based on this patient's data they will have a heart attack :broken_heart:")
     else:
