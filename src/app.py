@@ -27,7 +27,7 @@ slope = st.select_slider("Input slope", [0, 1, 2, 3])
 # this definition takes the data the user inputs and then makes a prediction based on our trained model
 def prediction():
     # load the trained model
-    model = joblib.load('../model/best_model.joblib')
+    model = joblib.load('./model/best_model.joblib')
     
     # code to take input from streamlit and convert to a dataframe so we can make predictions
     row = np.array([age, gender, cp, trestbps, chol, fbs, restecg, thalac, exang, oldpeak, slope])
