@@ -22,8 +22,8 @@ thalac = st.number_input("Input Max Heart Rate Achieved")
 exang = st.select_slider("Input execrice induced angina", ["Yes", "No"])
 #oldpeak = st.number_input("Input ST depression")
 #slope = st.select_slider("Input slope", [0, 1, 2, 3])
-X["oldpeak"] = 1
-X["slope"] = 2
+oldpeak = 1
+slope = 2
 
 # this definition takes the data the user inputs and then makes a prediction based on our trained model
 def prediction():
@@ -54,9 +54,8 @@ def prediction():
     X["restecg"] = X["restecg"].map({'Normal': 0,'Having ST-T Wave Abnormality': 1, 'Definite or Probable Estes Criteria': 2})
     X["thalach"] = pd.to_numeric(X['thalach'])
     X["exang"] = X["exang"].apply(lambda x: 1 if x == "Yes" else 0)
-    #X["oldpeak"] = pd.to_numeric(X['oldpeak'])
-    #X["slope"] = pd.to_numeric(X['slope'])
-    
+    X["oldpeak"] = pd.to_numeric(X['oldpeak'])
+    X["slope"] = pd.to_numeric(X['slope'])
     
     prediction = model.predict(X)[0]
     
