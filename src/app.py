@@ -15,13 +15,13 @@ age = st.slider("Input age", 18, 100)
 gender = st.select_slider("Input gender", ["Male", "Female"])
 cp = st.selectbox("Input chest pain type", ("Typical Angina", "Atypical Angina", "Non-Anginal Pain", "Asymptomatic"))
 trestbps = st.slider("Input Resting Blood Pressure", 50, 200)
-chol = st.number_input("Input Cholesterol")
-fbs = st.number_input("Input fasting blood sugar (mg/dl)")
+chol = st.slide("Input Cholesterol (mg/dl)", 0, 300)
+fbs = st.slider("Input fasting blood sugar (mg/dl)", 50, 200)
 restecg = st.select_slider("Input resting electrocardiographic results", ["Normal", "Having ST-T Wave Abnormality", "Definite or Probable Estes Criteria"])
 thalac = st.number_input("Input Max Heart Rate Achieved")
 exang = st.select_slider("Input execrice induced angina", ["Yes", "No"])
-oldpeak = st.number_input("Input ST depression")
-slope = st.select_slider("Input slope", [0, 1, 2, 3])
+#oldpeak = st.number_input("Input ST depression")
+#slope = st.select_slider("Input slope", [0, 1, 2, 3])
 
 
 # this definition takes the data the user inputs and then makes a prediction based on our trained model
@@ -53,8 +53,10 @@ def prediction():
     X["restecg"] = X["restecg"].map({'Normal': 0,'Having ST-T Wave Abnormality': 1, 'Definite or Probable Estes Criteria': 2})
     X["thalach"] = pd.to_numeric(X['thalach'])
     X["exang"] = X["exang"].apply(lambda x: 1 if x == "Yes" else 0)
-    X["oldpeak"] = pd.to_numeric(X['oldpeak'])
-    X["slope"] = pd.to_numeric(X['slope'])
+    #X["oldpeak"] = pd.to_numeric(X['oldpeak'])
+    #X["slope"] = pd.to_numeric(X['slope'])
+    X["oldpeak"] = 1
+    X["slope"] = 2
     
     prediction = model.predict(X)[0]
     
