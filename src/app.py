@@ -22,7 +22,8 @@ thalac = st.number_input("Input Max Heart Rate Achieved")
 exang = st.select_slider("Input execrice induced angina", ["Yes", "No"])
 #oldpeak = st.number_input("Input ST depression")
 #slope = st.select_slider("Input slope", [0, 1, 2, 3])
-
+X["oldpeak"] = 1
+X["slope"] = 2
 
 # this definition takes the data the user inputs and then makes a prediction based on our trained model
 def prediction():
@@ -55,8 +56,7 @@ def prediction():
     X["exang"] = X["exang"].apply(lambda x: 1 if x == "Yes" else 0)
     #X["oldpeak"] = pd.to_numeric(X['oldpeak'])
     #X["slope"] = pd.to_numeric(X['slope'])
-    X["oldpeak"] = 1
-    X["slope"] = 2
+    
     
     prediction = model.predict(X)[0]
     
